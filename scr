@@ -1,0 +1,25 @@
+export type Subgraph = {
+  id: string;
+  name: string;
+  url: string;
+  enabled: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type AuditEvent = {
+  id: string;
+  eventType: string;
+  actor: string;
+  subjectType: string;
+  subjectId: string | null;
+  detail: Record<string, unknown>;
+  createdAt: string;
+};
+
+export type RuntimeState = {
+  startedAt: string;
+  activeSubgraphs: Array<{ name: string; url: string }>;
+  ready: boolean;
+  compositionError: string | null;
+};
