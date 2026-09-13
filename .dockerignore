@@ -1,0 +1,6 @@
+dockerignore
+.git
+.env
+node_modules
+coverage
+README.md
