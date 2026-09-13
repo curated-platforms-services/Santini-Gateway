@@ -1,0 +1,12 @@
+| Method | Route | Purpose |
+|---|---|---|
+| `GET` | `/healthz` | Liveness and PostgreSQL readiness |
+| `GET` | `/readyz` | Gateway composition readiness |
+| `GET` | `/` | Operator dashboard |
+| `POST` | `/graphql` | Federated GraphQL endpoint |
+| `GET` | `/api/admin/subgraphs` | List registered subgraphs |
+| `POST` | `/api/admin/subgraphs` | Register a subgraph |
+| `PATCH` | `/api/admin/subgraphs/:id` | Enable/disable or update a subgraph |
+| `POST` | `/api/admin/subgraphs/:id/validate` | Validate subgraph endpoint reachability |
+| `GET` | `/api/admin/audit-events` | Read recent configuration audit events |
+| `GET` | `/api/admin/runtime` | Read active gateway runtime state |
