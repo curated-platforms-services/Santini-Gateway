@@ -1,0 +1,1 @@
+Subgraph URLs are administrator-controlled network destinations. The host allowlist is required in production. For stronger controls, resolve and validate DNS addresses, deny private metadata IP ranges where inappropriate, and use service discovery rather than arbitrary URLs.
