@@ -1,0 +1,1 @@
+This implementation does not hot-reload Apollo Gateway composition. That is intentional: dynamic schema swaps need generation tracking, warm-up, atomic traffic cutover, rollback, and composed-schema validation. Configuration changes are durable immediately but active only after deployment restart.
