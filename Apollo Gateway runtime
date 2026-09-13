@@ -1,0 +1,1 @@
+composes the registered enabled subgraphs at startup and routes GraphQL requests across the federation graph.
