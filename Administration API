@@ -1,0 +1,1 @@
+When it is unset, GraphQL authentication is delegated to downstream subgraphs. This is useful only for trusted internal environments.
