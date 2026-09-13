@@ -1,0 +1,18 @@
+1. Provision PostgreSQL with encrypted storage, backups, and restricted network access.
+2. Run `bun scripts/migrate.ts` as a one-shot migration job.
+3. Store `DATABASE_URL`, `SANTINI_ADMIN_TOKEN`, and `SANTINI_CLIENT_TOKEN` in a secret manager.
+4. Configure `SANTINI_ALLOWED_SUBGRAPH_HOSTS` with approved DNS names.
+5. Build and publish:
+
+   ```bash
+   docker build -t registry.example.com/santini/gateway:<git-sha> .
+   docker push registry.example.com/santini/gateway:<git-sha>
+   ```
+
+6. Deploy gateway instances behind Nginx, Cloudflare, or a Kubernetes ingress.
+7. Configure HTTPS at the edge; do not expose cleartext public traffic.
+8. Use readiness checks at `/readyz`.
+9. Perform rolling replacement when subgraph configuration changes.
+10. Monitor gateway, subgraph, database, and edge latency/error rates independently.
+
+---
