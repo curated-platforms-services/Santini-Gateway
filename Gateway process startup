@@ -1,0 +1,3 @@
+  -> PostgreSQL enabled subgraph registry
+  -> Apollo Gateway service-list composition
+  -> downstream _service { sdl } endpoints
