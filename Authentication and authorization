@@ -1,0 +1,1 @@
+Shared bearer tokens are a minimal mechanism. Production should use OIDC/JWT validation, workload identity, role-based authorization, tenant-aware policies, token rotation, and immutable actor identity in audit records.
