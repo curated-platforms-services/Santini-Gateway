@@ -1,0 +1,10 @@
+- Bun `1.1+`
+- PostgreSQL `14+`
+- Apollo Federation-compatible subgraphs
+- Node compatibility mode supplied by Bun
+- Nginx `1.25+`
+- Docker Compose v2
+- Subgraphs are reachable from the gateway container network
+- Each subgraph exposes federation metadata required by Apollo Gateway composition
+
+---
