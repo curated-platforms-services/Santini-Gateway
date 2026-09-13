@@ -1,0 +1,3 @@
+  -> Nginx / Cloudflare
+  -> Apollo Gateway (/graphql)
+  -> composed downstream subgraphs
