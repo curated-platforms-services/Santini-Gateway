@@ -1,0 +1,131 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  background: #0d1420;
+  color: #edf4ff;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; }
+
+main {
+  width: min(100% - 2rem, 980px);
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+}
+
+h1, h2, p { margin-top: 0; }
+
+h1 { font-size: clamp(2rem, 5vw, 3rem); }
+
+h2 { font-size: 1.1rem; }
+
+.eyebrow {
+  color: #77d8c5;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+}
+
+.card {
+  background: #172234;
+  border: 1px solid #2c425f;
+  border-radius: 12px;
+  margin: 1rem 0;
+  padding: 1.25rem;
+}
+
+label {
+  display: block;
+  font-weight: 700;
+  margin: .85rem 0 .35rem;
+}
+
+input {
+  background: #0b111b;
+  border: 1px solid #405a7d;
+  border-radius: 6px;
+  color: #edf4ff;
+  font: inherit;
+  padding: .7rem;
+  width: 100%;
+}
+
+input:focus, button:focus {
+  outline: 3px solid #77d8c5;
+  outline-offset: 2px;
+}
+
+.checkbox {
+  align-items: center;
+  display: flex;
+  font-weight: 500;
+  gap: .5rem;
+}
+
+.checkbox input { width: auto; }
+
+button {
+  background: #77d8c5;
+  border: 0;
+  border-radius: 6px;
+  color: #08201d;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  margin: .9rem .4rem 0 0;
+  padding: .65rem .85rem;
+}
+
+button:hover { background: #9beada; }
+
+button.secondary {
+  background: #2f4765;
+  color: #edf4ff;
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hint, .muted {
+  color: #b6c5d9;
+  font-size: .9rem;
+  margin-top: .75rem;
+}
+
+.error { color: #ffaaa7; }
+
+.subgraph {
+  border-top: 1px solid #2c425f;
+  padding: 1rem 0;
+}
+
+.subgraph:first-child { border-top: 0; }
+
+.subgraph-name {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+}
+
+.badge {
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 800;
+  padding: .2rem .5rem;
+}
+
+.enabled { background: #1c6559; color: #cefff6; }
+.disabled { background: #61414a; color: #ffdce0; }
+
+code {
+  color: #b9d8ff;
+  overflow-wrap: anywhere;
+}
+
+ul { padding-left: 1.25rem; }
