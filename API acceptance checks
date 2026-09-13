@@ -1,0 +1,28 @@
+Unauthenticated administrative access must fail:
+
+```bash
+curl -i http://localhost:8088/api/admin/subgraphs
+```
+
+Expected: `401 Unauthorized`.
+
+Malformed subgraph names must fail:
+
+```bash
+curl -i -X POST http://localhost:8088/api/admin/subgraphs \
+  -H 'Authorization: Bearer local-admin-token' \
+  -H 'Content-Type: application/json' \
+  --data '{"name":"Invalid_Name","url":"http://accounts-subgraph:4001/graphql"}'
+```
+
+Expected: `400` with `validation_error`.
+
+Unauthorized GraphQL traffic must fail when `SANTINI_CLIENT_TOKEN` is set:
+
+```bash
+curl -i http://localhost:8088/graphql \
+  -H 'Content-Type: application/json' \
+  --data '{"query":"query { __typename }"}'
+```
+
+Expected: `401 Unauthorized`.
