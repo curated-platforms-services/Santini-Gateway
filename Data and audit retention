@@ -1,0 +1,57 @@
+# Audit Event Retention & Governance Plan
+
+## Status
+Baseline retains audit events indefinitely. Not yet suitable for scaled/production operation without the definitions below.
+
+## Current State
+
+- ✅ Audit events are captured.
+- ❌ Retention policy — not defined (currently indefinite).
+- ❌ Archival strategy — not defined.
+- ❌ Access controls — not defined.
+- ❌ Privacy classification — not defined.
+
+## Required Definitions Before Operating at Scale
+
+### 1. Retention Policy
+- Define how long audit events must be kept in "hot" (queryable) storage, e.g. 30/90/180 days.
+- Define total retention ceiling, including any legal/compliance-mandated minimums or maximums.
+- Define per-category retention if different event types warrant different durations (e.g., auth events vs. config changes vs. data access events).
+- Define deletion process once retention period expires (automated purge vs. manual review).
+
+### 2. Archival Strategy
+- Define where aged-out events move to (e.g., cold storage, object storage with lifecycle rules).
+- Define format and compression for archived events.
+- Define how archived events can be retrieved if needed (e.g., for an investigation or legal hold).
+- Define archival integrity guarantees (immutability, checksums, tamper-evidence).
+
+### 3. Access Controls
+- Define who can read audit events (roles, not individuals) — e.g., security team, compliance, on-call.
+- Define who can read the *full* event (including any sensitive payload) vs. a redacted view.
+- Define approval/logging requirements for accessing audit data itself (audit-the-audit-log).
+- Define whether access differs between hot storage and archive.
+
+### 4. Privacy Classification
+- Classify what audit events may contain: PII, credentials, tokens, IP addresses, free-text fields, etc.
+- Define redaction/masking rules for sensitive fields at write-time or query-time.
+- Define data subject rights handling (e.g., deletion requests) and how they interact with retention/immutability requirements.
+- Map classification to relevant regulatory frameworks (e.g., GDPR, CCPA) as applicable to the deployment's jurisdictions.
+
+## Open Questions to Resolve
+
+- Are there legal/regulatory minimums that override a shorter retention preference?
+- Does any audit event capture request/response bodies that could contain sensitive user data?
+- Who is the accountable owner for approving changes to retention or access policy going forward?
+
+## Next Steps
+
+1. Assign an owner (security/compliance) to draft the retention and privacy classification policy.
+2. Classify existing audit event types against the privacy classification above.
+3. Implement lifecycle rules for archival based on the agreed retention windows.
+4. Implement role-based access controls, with access-to-audit-log itself logged.
+5. Review with legal/compliance before enabling at scale.
+
+## Non-Goals (Explicit)
+
+- This document does not itself set retention durations or access roles — those must be explicitly decided and documented by the accountable owner(s).
+- No indefinite retention should be assumed as a fallback once a policy is defined.
