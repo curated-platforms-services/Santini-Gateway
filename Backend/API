@@ -1,0 +1,8 @@
+- Bun HTTP server.
+- Apollo Server + Apollo Gateway exposes the federated GraphQL endpoint at `/graphql`.
+- REST administration API under `/api/admin`.
+- Bearer-token authorization:
+  - `SANTINI_ADMIN_TOKEN` protects configuration operations.
+  - `SANTINI_CLIENT_TOKEN`, when configured, protects GraphQL clients.
+- Gateway configuration is read from PostgreSQL at process start.
+- Subgraph configuration updates are stored immediately but require a rolling restart or explicit redeployment to change active gateway composition.
