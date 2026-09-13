@@ -1,0 +1,1 @@
+This implementation uses Apollo Gateway’s `serviceList` composition mode. It is production-suitable for a controlled number of stable subgraphs, but Apollo recommends managed federation or a separately governed supergraph pipeline for large-scale schema composition.
