@@ -1,0 +1,6 @@
+json
+{
+  "name": "accounts",
+  "url": "http://accounts-subgraph:4001/graphql",
+  "enabled": true
+}
