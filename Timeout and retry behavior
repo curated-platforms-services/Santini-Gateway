@@ -1,0 +1,1 @@
+The gateway has finite timeout boundaries but no automatic retries. This avoids duplicated mutation side effects. Introduce query-only retries only after operation classification, idempotency policy, and downstream retry budgets are explicit.
