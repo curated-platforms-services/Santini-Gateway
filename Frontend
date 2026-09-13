@@ -1,0 +1,5 @@
+- Static operator dashboard at `/`.
+- Served by the Bun/TypeScript application.
+- Uses no framework build step, reducing deployment complexity.
+- Explicit loading, empty, success, stale, permission, and failure states.
+- Stores the administrator token only in `sessionStorage`.
