@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: santini_gateway
+      POSTGRES_USER: santini
+      POSTGRES_PASSWORD: santini
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U santini -d santini_gateway"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  migrate:
+    build: .
+    environment:
+      DATABASE_URL: postgres://santini:santini@postgres:5432/santini_gateway
+      SANTINI_ADMIN_TOKEN: local-admin-token
+    command: ["bun", "scripts/migrate.ts"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  gateway:
+    build: .
+    environment:
+      DATABASE_URL: postgres://santini:santini@postgres:5432/santini_gateway
+      SANTINI_ADMIN_TOKEN: ${SANTINI_ADMIN_TOKEN:-local-admin-token}
+      SANTINI_CLIENT_TOKEN: ${SANTINI_CLIENT_TOKEN:-local-client-token}
+      SANTINI_ALLOWED_SUBGRAPH_HOSTS: accounts-subgraph,products-subgraph
+      PORT: 8080
+      HOST: 0.0.0.0
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "bun", "-e", "fetch('http://localhost:8080/healthz').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "8088:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      gateway:
+        condition: service_healthy
+
+volumes:
+  postgres-data:
