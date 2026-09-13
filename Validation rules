@@ -1,0 +1,10 @@
+- `name`: lowercase alphanumeric plus hyphens, 2–64 characters.
+- `url`: valid `http:` or `https:` URL.
+- `url` must not contain credentials.
+- Production deployments should restrict URL hosts using `SANTINI_ALLOWED_SUBGRAPH_HOSTS`.
+- Subgraph endpoint validation uses a bounded HTTP request to:
+
+graphql
+query SantiniGatewayHealthCheck {
+  __typename
+}
