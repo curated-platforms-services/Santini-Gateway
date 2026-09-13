@@ -1,0 +1,7 @@
+- Dashboard explains that an administrator token is required before it loads state.
+- Missing token creates an explicit recovery state.
+- Empty subgraph registry is shown explicitly.
+- Create-subgraph failures are visible to the operator.
+- Endpoint validation has in-progress, success, and error feedback.
+- Enabled/disabled state is visually distinguishable.
+- The UI warns that configuration updates require restart.
