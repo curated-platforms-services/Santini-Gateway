@@ -4,3 +4,16 @@ json
   "url": "http://accounts-subgraph:4001/graphql",
   "enabled": true
 }
+
+Response:
+
+json
+{
+  "id": "58f37d60-1137-4aa8-a73e-cf47bdfd9b39",
+  "name": "accounts",
+  "url": "http://accounts-subgraph:4001/graphql",
+  "enabled": true,
+  "createdAt": "2026-09-19T12:00:00.000Z",
+  "updatedAt": "2026-09-19T12:00:00.000Z"
+}
+
