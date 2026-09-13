@@ -1,0 +1,7 @@
+- Client request timeout: 25 seconds at Nginx.
+- Gateway server timeout: 30 seconds.
+- Downstream GraphQL requests inherit request headers and use a 20-second fetch timeout.
+- No retries occur for GraphQL mutations.
+- Query retries are deliberately omitted in this baseline because retries can duplicate side effects when downstream operation classification is incorrect.
+- Ordering is preserved within one GraphQL request; no cross-request ordering guarantee exists.
+- Gateway configuration changes are durable before reload, but a restart is required before they become active.
