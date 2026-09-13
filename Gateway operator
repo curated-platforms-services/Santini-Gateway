@@ -1,0 +1,1 @@
+signs into the dashboard using an administrator token, adds or disables subgraphs, validates health, and requests a controlled gateway reload.
