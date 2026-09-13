@@ -1,0 +1,5 @@
+- registered subgraphs,
+- enabled/disabled state,
+- subgraph endpoint URLs,
+- expected federation version,
+- audit events.
