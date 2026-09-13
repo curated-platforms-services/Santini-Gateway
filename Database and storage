@@ -1,0 +1,1 @@
+Redis is optional in this baseline. It can be introduced for persisted-query caches, distributed rate limits, and schema-composition caching after workload evidence supports it.
