@@ -1,0 +1,18 @@
+json
+{
+  "error": {
+    "code": "validation_error",
+    "message": "name must match ^[a-z][a-z0-9-]{1,63}$"
+  }
+}
+
+
+Error codes:
+
+- `unauthorized`
+- `not_found`
+- `validation_error`
+- `conflict`
+- `dependency_unavailable`
+- `gateway_unavailable`
+- `internal_error`
