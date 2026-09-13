@@ -1,0 +1,1 @@
+A coordination bottleneck as the number of subgraphs and schema owners grows. A production fleet should migrate to a governed supergraph artifact pipeline, Apollo managed federation, or an equivalent composition CI workflow.
