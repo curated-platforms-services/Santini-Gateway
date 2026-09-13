@@ -1,0 +1,18 @@
+docker compose exec postgres psql -U santini -d santini_gateway \
+  -c 'SELECT id, name, url, enabled, created_at FROM subgraphs ORDER BY name;'
+```
+
+Inspect audit events:
+
+```bash
+docker compose exec postgres psql -U santini -d santini_gateway \
+  -c 'SELECT event_type, subject_type, created_at FROM audit_events ORDER BY created_at DESC;'
+```
+
+### Failure-state checks
+
+- Stop PostgreSQL and call `/healthz`; expected status is non-200.
+- Register a disabled subgraph; expected behavior is that it does not appear in active runtime state after restart.
+- Register an unreachable enabled subgraph and restart; expected `/readyz` is non-200 with a composition error.
+- Attempt a URL with credentials; expected `400`.
+- Attempt a URL outside `SANTINI_ALLOWED_SUBGRAPH_HOSTS`; expected `400`.
