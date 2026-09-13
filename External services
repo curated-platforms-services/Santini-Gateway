@@ -1,0 +1,6 @@
+- **Downstream federation subgraphs:** GraphQL services implementing Apollo Federation.
+- **PostgreSQL:** configuration and audit persistence.
+- **Nginx:** TLS termination, request-size limits, upstream timeout boundary, and static edge policy.
+- **Cloudflare:** optional edge TLS/WAF/CDN boundary.
+- **OpenTelemetry collector:** optional OTLP trace export.
+- **NATS/Airflow:** not required for request-time routing; use them later for asynchronous schema validation and fleet rollout workflows
