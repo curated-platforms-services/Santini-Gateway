@@ -1,0 +1,46 @@
+# Gateway Runtime — Baseline Scope
+
+## Status
+Baseline (single logical gateway runtime)
+
+## Current State
+
+This baseline provides **one logical gateway runtime**. It does **not** implement:
+
+- Multi-region active-active routing
+- Health-aware subgraph failover
+- Circuit breakers
+- Regional traffic steering
+
+## Why These Are Excluded (For Now)
+
+Each of the above introduces cross-cutting operational complexity that shouldn't be bolted on implicitly. They will only be added once the following contracts are explicitly defined and agreed upon:
+
+### 1. Consistency Contract
+- What consistency model applies across regions (strong, eventual, read-your-writes)?
+- How are writes reconciled if regions diverge?
+- Which data/state is safe to serve stale, and for how long?
+
+### 2. Latency Contract
+- What are the acceptable p50/p95/p99 latency budgets per region and cross-region?
+- What is the maximum acceptable added latency from health checks, retries, or failover decisions?
+- Are there SLOs tied to these numbers, and who owns enforcing them?
+
+### 3. Ownership Contract
+- Which team owns the routing/steering logic in production?
+- Who owns on-call response when a circuit breaker trips or a failover occurs?
+- Who has authority to change failover thresholds or routing weights?
+
+## Next Steps
+
+Before implementing any of the excluded capabilities:
+
+1. Draft and review the consistency contract with data/storage owners.
+2. Draft and review the latency contract with SLO/reliability owners.
+3. Assign explicit ownership for routing, failover, and circuit-breaker logic.
+4. Only then scope and design the corresponding implementation (routing layer, health checks, breaker policies, steering rules).
+
+## Non-Goals (Explicit)
+
+- This baseline does not assume any of the above will be added by default.
+- No implicit fallback behavior should be introduced without the contracts above being signed off.
