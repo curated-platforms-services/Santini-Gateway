@@ -1,0 +1,33 @@
+santini-gateway/
+├── .dockerignore
+├── .env.example
+├── .gitignore
+├── Dockerfile
+├── Makefile
+├── README.md
+├── bun.lockb
+├── docker-compose.yml
+├── nginx/
+│   └── default.conf
+├── package.json
+├── tsconfig.json
+├── db/
+│   └── migrations/
+│       └── 001_initial.sql
+├── src/
+│   ├── config.ts
+│   ├── db.ts
+│   ├── gateway.ts
+│   ├── main.ts
+│   ├── observability.ts
+│   ├── types.ts
+│   ├── validation.ts
+│   └── web.ts
+├── static/
+│   ├── app.js
+│   ├── index.html
+│   └── styles.css
+├── tests/
+│   └── validation.test.ts
+└── scripts/
+    └── migrate.ts
