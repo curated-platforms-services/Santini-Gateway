@@ -1,0 +1,63 @@
+# Observability & Instrumentation Plan
+
+## Status
+Structured logs present. Full observability stack not yet implemented.
+
+## Current State
+
+- ✅ Structured logs are present.
+- ❌ Full OpenTelemetry exporter setup — not implemented.
+- ❌ Metrics — not implemented.
+- ❌ Trace propagation — not implemented.
+- ❌ Query-cost analytics — not implemented.
+- ❌ Cardinality controls — not implemented.
+
+## Required Instrumentation Before Broad Production Use
+
+### 1. Request Rate, Latency, and Error Rate by Route
+- Emit counters/histograms tagged by route (and method where applicable).
+- Track p50/p95/p99 latency per route.
+- Track error rate (4xx/5xx or equivalent) per route.
+
+### 2. Subgraph Latency and Failure Rate
+- Instrument each subgraph call with latency histograms.
+- Track failure counts/rates per subgraph, distinguishing timeout vs. error vs. malformed response.
+
+### 3. Composition Duration and Failure Count
+- Measure time taken to compose the supergraph (or per-request composition step, if applicable).
+- Track composition failure counts and failure reasons.
+
+### 4. PostgreSQL Pool Saturation
+- Expose current pool size, active connections, idle connections, and wait queue length.
+- Alert on sustained saturation thresholds.
+
+### 5. GraphQL Operation Complexity and Rejection Counts
+- Compute and emit operation complexity/cost scores.
+- Track counts of operations rejected for exceeding complexity limits, with reason codes.
+
+### 6. Configuration Activation Lag
+- Measure time between configuration change (e.g., new supergraph schema, routing config) and successful activation.
+- Emit as a histogram or gauge with alerting on excessive lag.
+
+### 7. Deployment Version and Active Supergraph Identity
+- Emit deployment version (build/commit SHA) as a labeled metric or log field.
+- Emit active supergraph schema identity/hash so version skew is diagnosable.
+
+## Cross-Cutting Requirements
+
+- **Trace propagation**: Ensure trace context (e.g., W3C Trace Context headers) flows from gateway → subgraphs → downstream services.
+- **Cardinality controls**: Define label/tag allowlists to prevent unbounded cardinality (e.g., avoid raw user IDs or full query strings as labels).
+- **Exporter setup**: Configure OpenTelemetry exporters (traces + metrics) to the target backend(s), with sampling strategy defined.
+
+## Next Steps
+
+1. Stand up OpenTelemetry SDK + exporter configuration in the gateway runtime.
+2. Instrument each item above incrementally, starting with request rate/latency/error rate (highest immediate value).
+3. Define cardinality limits and label allowlists before enabling metrics in production.
+4. Validate trace propagation end-to-end (gateway → subgraph → downstream).
+5. Add dashboards/alerts once metrics are flowing reliably.
+
+## Non-Goals (Explicit)
+
+- This plan does not assume a specific backend (e.g., Prometheus, Datadog, Honeycomb) — that choice is out of scope here and should be made explicitly.
+- No instrumentation should ship to production without cardinality controls in place.
